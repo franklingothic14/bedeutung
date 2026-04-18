@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deutsch Wörter Poster</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#ececeb;
+      --text:#101010;
+      --muted:#5f5f5f;
+      --shadow:rgba(0,0,0,.18);
+      --card:rgba(255,255,255,.18);
+    }
+
+    *{box-sizing:border-box}
+
+    html,body{
+      margin:0;
+      min-height:100%;
+      font-family:'Inter',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+
+    body{
+      min-height:100vh;
+      overflow:hidden;
+    }
+
+    .poster{
+      position:relative;
+      min-height:100vh;
+      padding:28px 22px 24px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      overflow:hidden;
+      isolation:isolate;
+    }
+
+    .meta{
+      position:relative;
+      z-index:2;
+      font-size:14px;
+      line-height:1.25;
+      color:var(--muted);
+      max-width:220px;
+    }
+
+    .meta p{
+      margin:0;
+    }
+
+    .main{
+      position:relative;
+      z-index:2;
+      width:min(980px,100%);
+      margin:auto;
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      justify-content:center;
+      gap:20px;
+      padding:30px 0 10px;
+    }
+
+    .word-btn{
+      border:none;
+      background:transparent;
+      padding:0;
+      margin:0;
+      color:var(--text);
+      text-align:left;
+      cursor:pointer;
+      font-weight:900;
+      font-size:clamp(54px,12vw,150px);
+      line-height:.92;
+      letter-spacing:-0.06em;
+      max-width:9ch;
+      transition:transform .18s ease, opacity .18s ease;
+    }
+
+    .word-btn:hover{
+      transform:translateY(-2px);
+      opacity:.92;
+    }
+
+    .hint{
+      font-size:13px;
+      color:var(--muted);
+      letter-spacing:.01em;
+    }
+
+    .meaning{
+      max-width:760px;
+      font-size:clamp(18px,2.15vw,30px);
+      line-height:1.3;
+      opacity:1;
+      transform:translateY(0);
+      transition:opacity .22s ease, transform .22s ease;
+    }
+
+    .meaning.hidden{
+      opacity:0;
+      transform:translateY(10px);
+      pointer-events:none;
+    }
+
+    .controls{
+      position:relative;
+      z-index:2;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .btn{
+      appearance:none;
+      border:1.5px solid #111;
+      background:transparent;
+      color:#111;
+      padding:12px 18px;
+      font:inherit;
+      font-size:14px;
+      font-weight:700;
+      cursor:pointer;
+      transition:all .18s ease;
+    }
+
+    .btn:hover{
+      background:#111;
+      color:#f3f3f3;
+    }
+
+    .btn.dark{
+      background:#111;
+      color:#f3f3f3;
+    }
+
+    .counter{
+      font-size:14px;
+      color:var(--muted);
+      margin-left:auto;
+    }
+
+    .shape{
+      position:absolute;
+      background:#000;
+      box-shadow:0 24px 30px var(--shadow);
+      z-index:1;
+    }
+
+    .s1{
+      width:96px;
+      height:210px;
+      left:32px;
+      top:205px;
+    }
+
+    .s2{
+      width:130px;
+      height:34px;
+      left:48px;
+      top:116px;
+    }
+
+    .s3{
+      width:36px;
+      height:106px;
+      left:49%;
+      top:210px;
+    }
+
+    .s4{
+      width:72px;
+      height:265px;
+      right:34px;
+      top:-4px;
+    }
+
+    .s5{
+      width:270px;
+      height:38px;
+      right:48px;
+      bottom:30px;
+    }
+
+    .swipe-zone{
+      position:absolute;
+      inset:0;
+      z-index:0;
+    }
+
+    @media (max-width: 720px){
+      .poster{
+        padding:22px 16px 20px;
+      }
+
+      .main{
+        gap:16px;
+      }
+
+      .controls{
+        gap:10px;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .counter{
+        width:100%;
+        margin-left:0;
+      }
+
+      .s1{
+        width:52px;
+        height:150px;
+        left:16px;
+        top:260px;
+      }
+
+      .s2{
+        width:92px;
+        height:24px;
+        left:30px;
+        top:130px;
+      }
+
+      .s3{
+        width:24px;
+        height:78px;
+        left:55%;
+        top:230px;
+      }
+
+      .s4{
+        width:48px;
+        height:180px;
+        right:10px;
+        top:0;
+      }
+
+      .s5{
+        width:160px;
+        height:24px;
+        right:18px;
+        bottom:42px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="poster" id="app">
+    <div class="swipe-zone" aria-hidden="true"></div>
+
+    <div class="shape s1"></div>
+    <div class="shape s2"></div>
+    <div class="shape s3"></div>
+    <div class="shape s4"></div>
+    <div class="shape s5"></div>
+
+    <header class="meta">
+      <p>Deutsch Wörter</p>
+      <p>A1–B1 · einfache Bedeutung</p>
+    </header>
+
+    <main class="main">
+      <button class="word-btn" id="wordBtn" aria-expanded="false">
+        Haus
+      </button>
+
+      <div class="hint">
+        Klick auf das Wort für die Bedeutung
+      </div>
+
+      <div class="meaning hidden" id="meaningBox">
+        Ein Haus ist ein Gebäude. Menschen wohnen darin.
+      </div>
+    </main>
+
+    <footer class="controls">
+      <button class="btn" id="prevBtn">← Zurück</button>
+      <button class="btn dark" id="toggleBtn">Bedeutung</button>
+      <button class="btn" id="nextBtn">Weiter →</button>
+      <div class="counter" id="counter">1 / 12</div>
+    </footer>
+  </div>
+
+  <script>
+    const words = [
+      { word: "Haus", meaning: "Ein Haus ist ein Gebäude. Menschen wohnen darin.", level: "A1" },
+      { word: "Apfel", meaning: "Ein Apfel ist eine Frucht. Man kann ihn essen.", level: "A1" },
+      { word: "lernen", meaning: "Lernen bedeutet: Man übt etwas und versteht es besser.", level: "A1" },
+      { word: "Freund", meaning: "Ein Freund ist eine Person, die man mag und gut kennt.", level: "A1" },
+      { word: "Einkaufen", meaning: "Einkaufen bedeutet: Man geht in ein Geschäft und kauft Sachen.", level: "A2" },
+      { word: "pünktlich", meaning: "Pünktlich bedeutet: genau zur richtigen Zeit.", level: "A2" },
+      { word: "vergessen", meaning: "Vergessen bedeutet: Man erinnert sich nicht mehr.", level: "A2" },
+      { word: "einladen", meaning: "Einladen bedeutet: Man bittet eine Person zu kommen.", level: "A2" },
+      { word: "wichtig", meaning: "Wichtig heißt: Es ist nicht egal. Es hat großen Wert.", level: "B1" },
+      { word: "entscheiden", meaning: "Entscheiden bedeutet: Man wählt eine Sache oder einen Weg.", level: "B1" },
+      { word: "erklären", meaning: "Erklären bedeutet: Man macht etwas klar und verständlich.", level: "B1" },
+      { word: "wahrscheinlich", meaning: "Wahrscheinlich bedeutet: Etwas passiert vielleicht und eher ja als nein.", level: "B1" }
+    ];
+
+    let currentIndex = Math.floor(Math.random() * words.length);
+    let meaningVisible = false;
+
+    const wordBtn = document.getElementById("wordBtn");
+    const meaningBox = document.getElementById("meaningBox");
+    const nextBtn = document.getElementById("nextBtn");
+    const prevBtn = document.getElementById("prevBtn");
+    const toggleBtn = document.getElementById("toggleBtn");
+    const counter = document.getElementById("counter");
+    const app = document.getElementById("app");
+
+    function renderWord() {
+      const item = words[currentIndex];
+      wordBtn.textContent = item.word;
+      meaningBox.textContent = item.meaning;
+      counter.textContent = (currentIndex + 1) + " / " + words.length + " · " + item.level;
+
+      if (meaningVisible) {
+        meaningBox.classList.remove("hidden");
+        wordBtn.setAttribute("aria-expanded", "true");
+      } else {
+        meaningBox.classList.add("hidden");
+        wordBtn.setAttribute("aria-expanded", "false");
+      }
+    }
+
+    function nextWord() {
+      currentIndex = (currentIndex + 1) % words.length;
+      meaningVisible = false;
+      renderWord();
+    }
+
+    function prevWord() {
+      currentIndex = (currentIndex - 1 + words.length) % words.length;
+      meaningVisible = false;
+      renderWord();
+    }
+
+    function toggleMeaning() {
+      meaningVisible = !meaningVisible;
+      renderWord();
+    }
+
+    wordBtn.addEventListener("click", toggleMeaning);
+    toggleBtn.addEventListener("click", toggleMeaning);
+    nextBtn.addEventListener("click", nextWord);
+    prevBtn.addEventListener("click", prevWord);
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") nextWord();
+      if (e.key === "ArrowLeft") prevWord();
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        toggleMeaning();
+      }
+    });
+
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    app.addEventListener("touchstart", (e) => {
+      touchStartX = e.changedTouches[0].clientX;
+      touchStartY = e.changedTouches[0].clientY;
+    }, { passive: true });
+
+    app.addEventListener("touchend", (e) => {
+      const touchEndX = e.changedTouches[0].clientX;
+      const touchEndY = e.changedTouches[0].clientY;
+
+      const diffX = touchEndX - touchStartX;
+      const diffY = touchEndY - touchStartY;
+
+      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+        if (diffX < 0) nextWord();
+        else prevWord();
+      }
+    }, { passive: true });
+
+    renderWord();
+  </script>
+</body>
+</html>
