@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+<<<<<<< HEAD
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -253,10 +254,318 @@
         height:24px;
         right:18px;
         bottom:42px;
+=======
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deutsch · Wörter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #e8e6e2;
+      --text: #101010;
+      --muted: #7a7a7a;
+      --grain-opacity: 0.55;
+    }
+
+    html,
+    body {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow: hidden;
+    }
+
+    /* ── Grain overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      opacity: var(--grain-opacity);
+      pointer-events: none;
+      z-index: 100;
+      mix-blend-mode: multiply;
+    }
+
+    .poster {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      grid-template-rows: 1fr;
+      height: 100vh;
+      position: relative;
+    }
+
+    /* ── Left vertical strip ── */
+    .strip {
+      grid-row: 1 / -1;
+      background: linear-gradient(180deg, #c0bcb4 0%, #8a8780 55%, #3d3b38 100%);
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .strip::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, .12) 0%, transparent 40%, rgba(0, 0, 0, .35) 100%);
+    }
+
+    .strip-label {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) rotate(180deg);
+      writing-mode: vertical-rl;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: rgba(255, 255, 255, .7);
+      text-transform: uppercase;
+      z-index: 2;
+      white-space: nowrap;
+    }
+
+    .strip-num {
+      position: absolute;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      font-weight: 800;
+      color: rgba(255, 255, 255, .8);
+      z-index: 2;
+      letter-spacing: .04em;
+    }
+
+    /* ── Right content area ── */
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 22px 28px 22px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ── Top row ── */
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .category-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      height: 80px;
+    }
+
+    .date-label {
+      text-align: right;
+      font-size: 28px;
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+
+    /* ── Main word area ── */
+    .word-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 0 10px 0;
+      gap: 0;
+    }
+
+    .sublabel {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .word-btn {
+      border: none;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+      text-align: left;
+      line-height: 0.88;
+    }
+
+    .word-main {
+      font-size: clamp(52px, 10vw, 112px);
+      font-weight: 900;
+      letter-spacing: -0.055em;
+      color: var(--text);
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      transition: opacity .2s ease;
+    }
+
+    .word-btn:hover .word-main {
+      opacity: .85;
+    }
+
+    .word-dot {
+      width: clamp(10px, 1.6vw, 20px);
+      height: clamp(10px, 1.6vw, 20px);
+      background: var(--text);
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+      margin-bottom: 6px;
+    }
+
+    .word-mirror {
+      font-size: clamp(38px, 7vw, 80px);
+      font-weight: 900;
+      letter-spacing: -0.055em;
+      color: rgba(0, 0, 0, .12);
+      transform: scaleY(-1);
+      line-height: 0.9;
+      display: block;
+      user-select: none;
+    }
+
+    /* ── Meaning block ── */
+    .meaning-wrap {
+      text-align: right;
+      transition: opacity .25s ease, transform .25s ease;
+      min-height: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+
+    .meaning-wrap.hidden {
+      opacity: 0;
+      transform: translateY(8px);
+      pointer-events: none;
+    }
+
+    .meaning-tag {
+      font-size: 13px;
+      font-style: italic;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+      letter-spacing: .01em;
+    }
+
+    .meaning-text {
+      font-size: clamp(13px, 1.6vw, 17px);
+      line-height: 1.4;
+      color: var(--muted);
+      max-width: 320px;
+    }
+
+    /* ── Bottom row ── */
+    .bottom-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-hint {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: .06em;
+    }
+
+    .btns {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn {
+      border: 1.5px solid #111;
+      background: transparent;
+      color: #111;
+      padding: 9px 14px;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      transition: all .18s ease;
+    }
+
+    .btn:hover,
+    .btn.active {
+      background: #111;
+      color: var(--bg);
+    }
+
+    .counter {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: .08em;
+      min-width: 50px;
+      text-align: right;
+    }
+
+    /* ── Swipe zone ── */
+    .swipe-zone {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    @media (max-width: 560px) {
+      .poster {
+        grid-template-columns: 60px 1fr;
+      }
+
+      .content {
+        padding: 16px 16px 16px 14px;
+      }
+
+      .date-label {
+        font-size: 20px;
+      }
+
+      .btns {
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .bottom-row {
+        flex-wrap: wrap;
+>>>>>>> 6c76397 (layout)
       }
     }
   </style>
 </head>
+<<<<<<< HEAD
 <body>
   <div class="poster" id="app">
     <div class="swipe-zone" aria-hidden="true"></div>
@@ -292,18 +601,85 @@
       <button class="btn" id="nextBtn">Weiter →</button>
       <div class="counter" id="counter">1 / 12</div>
     </footer>
+=======
+
+<body>
+  <div class="poster">
+
+    <!-- LEFT VERTICAL STRIP -->
+    <div class="strip">
+      <div class="strip-num" id="stripNum">001</div>
+      <div class="strip-label">Deutsch · Wörter</div>
+    </div>
+
+    <!-- RIGHT CONTENT -->
+    <div class="content" id="app">
+      <div class="swipe-zone" aria-hidden="true"></div>
+
+      <!-- TOP -->
+      <div class="top-row" style="position:relative;z-index:2">
+        <div class="category-label" id="levelLabel">Niveau A1</div>
+        <div class="date-label">A1<br>B1.</div>
+      </div>
+
+      <!-- WORD AREA -->
+      <div class="word-area" style="position:relative;z-index:2">
+        <div class="sublabel" id="sublabel">Wort des Tages</div>
+
+        <button class="word-btn" id="wordBtn" aria-expanded="false" title="Klick für Bedeutung">
+          <div class="word-main">
+            <span id="wordText">Haus</span>
+            <span class="word-dot"></span>
+          </div>
+          <span class="word-mirror" id="wordMirror" aria-hidden="true">Haus</span>
+        </button>
+
+        <div class="meaning-wrap hidden" id="meaningBox" style="margin-top:18px">
+          <div class="meaning-tag">[Bedeutung]</div>
+          <div class="meaning-text" id="meaningText">
+            Ein Haus ist ein Gebäude. Menschen wohnen darin.
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTTOM -->
+      <div class="bottom-row" style="position:relative;z-index:2">
+        <div class="nav-hint">← → oder wischen</div>
+        <div class="btns">
+          <button class="btn" id="prevBtn">←</button>
+          <button class="btn" id="toggleBtn">Bedeutung</button>
+          <button class="btn" id="nextBtn">→</button>
+        </div>
+        <div class="counter" id="counter">01 / 12</div>
+      </div>
+    </div>
+
+>>>>>>> 6c76397 (layout)
   </div>
 
   <script>
     const words = [
       { word: "Haus", meaning: "Ein Haus ist ein Gebäude. Menschen wohnen darin.", level: "A1" },
+<<<<<<< HEAD
       { word: "Apfel", meaning: "Ein Apfel ist eine Frucht. Man kann ihn essen.", level: "A1" },
       { word: "lernen", meaning: "Lernen bedeutet: Man übt etwas und versteht es besser.", level: "A1" },
       { word: "Freund", meaning: "Ein Freund ist eine Person, die man mag und gut kennt.", level: "A1" },
+=======
+      { word: "Tisch", meaning: "Ein Tisch ist ein Möbel. Man stellt Sachen darauf.", level: "A1" },
+      { word: "Wasser", meaning: "Wasser ist eine Flüssigkeit. Man kann sie trinken.", level: "A1" },
+      { word: "Schule", meaning: "In der Schule lernen Kinder lesen, rechnen und schreiben.", level: "A1" },
+      { word: "Apfel", meaning: "Ein Apfel ist eine runde Frucht. Er ist rot oder grün.", level: "A1" },
+      { word: "laufen", meaning: "Laufen bedeutet: schnell mit den Beinen gehen.", level: "A1" },
+      { word: "groß", meaning: "Groß bedeutet: etwas hat viel Größe oder ist nicht klein.", level: "A1" },
+      { word: "Hund", meaning: "Ein Hund ist ein Tier. Menschen haben ihn oft als Haustier.", level: "A1" },
+      { word: "Brot", meaning: "Brot ist ein Essen aus Mehl. Man kauft es in der Bäckerei.", level: "A1" },
+      { word: "kalt", meaning: "Kalt bedeutet: die Temperatur ist niedrig, nicht warm.", level: "A1" },
+>>>>>>> 6c76397 (layout)
       { word: "Einkaufen", meaning: "Einkaufen bedeutet: Man geht in ein Geschäft und kauft Sachen.", level: "A2" },
       { word: "pünktlich", meaning: "Pünktlich bedeutet: genau zur richtigen Zeit.", level: "A2" },
       { word: "vergessen", meaning: "Vergessen bedeutet: Man erinnert sich nicht mehr.", level: "A2" },
       { word: "einladen", meaning: "Einladen bedeutet: Man bittet eine Person zu kommen.", level: "A2" },
+<<<<<<< HEAD
       { word: "wichtig", meaning: "Wichtig heißt: Es ist nicht egal. Es hat großen Wert.", level: "B1" },
       { word: "entscheiden", meaning: "Entscheiden bedeutet: Man wählt eine Sache oder einen Weg.", level: "B1" },
       { word: "erklären", meaning: "Erklären bedeutet: Man macht etwas klar und verständlich.", level: "B1" },
@@ -328,6 +704,54 @@
       counter.textContent = (currentIndex + 1) + " / " + words.length + " · " + item.level;
 
       if (meaningVisible) {
+=======
+      { word: "freundlich", meaning: "Freundlich heißt: nett und gut zu anderen Menschen sein.", level: "A2" },
+      { word: "Bäckerei", meaning: "Eine Bäckerei ist ein Geschäft. Dort kauft man Brot und Kuchen.", level: "A2" },
+      { word: "Urlaub", meaning: "Urlaub ist eine Zeit ohne Arbeit. Man reist oder entspannt.", level: "A2" },
+      { word: "bezahlen", meaning: "Bezahlen bedeutet: Man gibt Geld für etwas.", level: "A2" },
+      { word: "Krankenhaus", meaning: "Ein Krankenhaus ist ein Ort, wo Ärzte kranke Menschen helfen.", level: "A2" },
+      { word: "Wetter", meaning: "Das Wetter zeigt, ob es draußen warm, kalt, sonnig oder regnerisch ist.", level: "A2" },
+      { word: "wichtig", meaning: "Wichtig heißt: Es hat großen Wert und ist nicht egal.", level: "B1" },
+      { word: "entscheiden", meaning: "Entscheiden bedeutet: Man wählt eine Sache oder einen Weg.", level: "B1" },
+      { word: "erklären", meaning: "Erklären bedeutet: Man macht etwas verständlich.", level: "B1" },
+      { word: "wahrscheinlich", meaning: "Wahrscheinlich bedeutet: Etwas passiert eher ja als nein.", level: "B1" },
+      { word: "Erfahrung", meaning: "Erfahrung ist etwas, das man durch viel Tun oder Erleben lernt.", level: "B1" },
+      { word: "vergleichen", meaning: "Vergleichen bedeutet: Man schaut, was gleich und was anders ist.", level: "B1" },
+      { word: "Meinung", meaning: "Eine Meinung ist das, was eine Person denkt oder glaubt.", level: "B1" },
+      { word: "Lösung", meaning: "Eine Lösung ist die Antwort auf ein Problem.", level: "B1" },
+    ];
+
+    let idx = Math.floor(Math.random() * words.length);
+    let shown = false;
+
+    const wordBtn = document.getElementById("wordBtn");
+    const wordText = document.getElementById("wordText");
+    const wordMirror = document.getElementById("wordMirror");
+    const meaningBox = document.getElementById("meaningBox");
+    const meaningTxt = document.getElementById("meaningText");
+    const levelLabel = document.getElementById("levelLabel");
+    const sublabel = document.getElementById("sublabel");
+    const counter = document.getElementById("counter");
+    const stripNum = document.getElementById("stripNum");
+    const nextBtn = document.getElementById("nextBtn");
+    const prevBtn = document.getElementById("prevBtn");
+    const toggleBtn = document.getElementById("toggleBtn");
+    const app = document.getElementById("app");
+
+    function pad(n) { return String(n).padStart(3, '0'); }
+
+    function render() {
+      const w = words[idx];
+      wordText.textContent = w.word;
+      wordMirror.textContent = w.word;
+      meaningTxt.textContent = w.meaning;
+      levelLabel.textContent = "Niveau " + w.level;
+      sublabel.textContent = w.level === "A1" ? "Anfänger" : w.level === "A2" ? "Grundstufe" : "Mittelstufe";
+      counter.textContent = pad(idx + 1) + " / " + pad(words.length);
+      stripNum.textContent = pad(idx + 1);
+
+      if (shown) {
+>>>>>>> 6c76397 (layout)
         meaningBox.classList.remove("hidden");
         wordBtn.setAttribute("aria-expanded", "true");
       } else {
@@ -336,6 +760,7 @@
       }
     }
 
+<<<<<<< HEAD
     function nextWord() {
       currentIndex = (currentIndex + 1) % words.length;
       meaningVisible = false;
@@ -392,3 +817,33 @@
   </script>
 </body>
 </html>
+=======
+    function next() { idx = (idx + 1) % words.length; shown = false; render(); }
+    function prev() { idx = (idx - 1 + words.length) % words.length; shown = false; render(); }
+    function toggle() { shown = !shown; render(); }
+
+    wordBtn.addEventListener("click", toggle);
+    toggleBtn.addEventListener("click", toggle);
+    nextBtn.addEventListener("click", next);
+    prevBtn.addEventListener("click", prev);
+
+    document.addEventListener("keydown", e => {
+      if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === " " || e.key === "Enter") { e.preventDefault(); toggle(); }
+    });
+
+    let tx = 0, ty = 0;
+    app.addEventListener("touchstart", e => { tx = e.changedTouches[0].clientX; ty = e.changedTouches[0].clientY; }, { passive: true });
+    app.addEventListener("touchend", e => {
+      const dx = e.changedTouches[0].clientX - tx;
+      const dy = e.changedTouches[0].clientY - ty;
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 48) { dx < 0 ? next() : prev(); }
+    }, { passive: true });
+
+    render();
+  </script>
+</body>
+
+</html>
+>>>>>>> 6c76397 (layout)
